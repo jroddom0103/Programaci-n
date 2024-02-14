@@ -14,7 +14,7 @@ public class Lentejas implements Comida {
 
         if (lasQuieres){
             System.out.println("Te doy +25 de energía y +10 de hierro");
-            return 25;
+            return 100;
         }else{
             System.out.println("Las dejas");
             return 0;
