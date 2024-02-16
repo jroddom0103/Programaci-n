@@ -12,12 +12,12 @@ public class Cuadrado implements iFigura2D {
 
     @Override
     public double perimetro() {
-        return 0;
+        return (Math.pow(this.lado,2));
     }
 
     @Override
     public double area() {
-        return 0;
+        return this.lado*this.lado;
     }
 
     @Override
@@ -31,4 +31,5 @@ public class Cuadrado implements iFigura2D {
         System.out.println("El área es de "+this.area()+".");
         System.out.println("El perímetro es de "+this.perimetro()+".");
     }
+
 }
