@@ -14,12 +14,12 @@ public class Rectángulo implements iFigura2D {
 
     @Override
     public double perimetro() {
-
+        return 0;
     }
 
     @Override
     public double area() {
-
+        return 0;
     }
 
     @Override
