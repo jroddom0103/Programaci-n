@@ -1,6 +1,8 @@
 package UD6.proyectoEmpresa;
 
-public class Articulo {
+import java.util.IllegalFormatCodePointException;
+
+public class Articulo implements Comparable<Articulo>{
 
     private String id;
     private String nombre;
@@ -27,9 +29,9 @@ public class Articulo {
         String cadenaAMostrar = "";
 
         cadenaAMostrar += "Artículo con id: "+this.id+"\n";
-        cadenaAMostrar += "Nombre: "+this.nombre+ ". Precio: "+this.precioConIva+"€\n";
-        cadenaAMostrar += "Stock: "+this.stock;
-        cadenaAMostrar += "Nombre Proveedor: "+this.proveedor.toString();
+        cadenaAMostrar += "Nombre: "+this.nombre+ ".\nPrecio: "+this.precioConIva+"€\n";
+        cadenaAMostrar += "Stock: "+this.stock+"\n";
+        cadenaAMostrar += "Nombre Proveedor: "+this.proveedor.toString()+"\n";
 
         return cadenaAMostrar;
     }
@@ -95,6 +97,17 @@ public class Articulo {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    @Override
+    public int compareTo(Articulo o) {
+        if (this.precioSinIva==o.precioSinIva){
+            return 0;
+        }else if (this.precioSinIva>o.precioSinIva){
+            return 1;
+        }else{
+            return -1;
+        }
     }
 }
 
