@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>UD6.proyectoAstros.clases</OriginalElement>
+  <nodes>
+    <node x="-54.0" y="269.0">UD6.proyectoAstros.clases.Planeta</node>
+    <node x="391.0" y="281.0">UD6.proyectoAstros.clases.Satelite</node>
+    <node x="275.75" y="-14.0">UD6.proyectoAstros.clases.Astro</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="UD6.proyectoAstros.clases.Satelite" target="UD6.proyectoAstros.clases.Astro" relationship="GENERALIZATION">
+      <point x="0.0" y="-68.5" />
+      <point x="603.0" y="244.0" />
+      <point x="380.75" y="244.0" />
+      <point x="0.0" y="116.5" />
+    </edge>
+    <edge source="UD6.proyectoAstros.clases.Planeta" target="UD6.proyectoAstros.clases.Astro" relationship="GENERALIZATION">
+      <point x="0.0" y="-80.5" />
+      <point x="158.5" y="244.0" />
+      <point x="380.75" y="244.0" />
+      <point x="0.0" y="116.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.6186726659167604" showDependencies="true" x="390.49999999999994" y="334.7063636363637" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
