@@ -243,14 +243,14 @@ public class GestionFichero {
         }
     }
 
-    public ArrayList<Participante>leerFicheroPuntuaciones(){
+    public ArrayList<Participante>leerFicheroPuntuaciones() {
 
         ArrayList<Puntuacion> arrDePuntuacionesTemporal = new ArrayList<>();
 
         String ls = File.separator;
-        File fichero1 = new File("resources"+ls+"archivosTema7"+ls+"proyectoQuiz"+ls+"puntuaciones.txt");
+        File fichero1 = new File("resources" + ls + "archivosTema7" + ls + "proyectoQuiz" + ls + "puntuaciones.txt");
 
-        if (fichero1.exists() && fichero1.isFile() && fichero1.canRead()){
+        if (fichero1.exists() && fichero1.isFile() && fichero1.canRead()) {
 
             FileReader fl = null;
             BufferedReader bl = null;
@@ -279,7 +279,7 @@ public class GestionFichero {
 
                     // Una vez tenemos el objeto, lo añadimos al ArrayList arrDePreguntasTemporal, que es
                     // el que va a contener todas las preguntas y respuestas del fichero
-                    if(!arrDePuntuacionesTemporal.contains(p)) {
+                    if (!arrDePuntuacionesTemporal.contains(p)) {
                         arrDePuntuacionesTemporal.add(p);
                     }
 
@@ -293,14 +293,14 @@ public class GestionFichero {
                 fl.close();
 
 
-
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
+                return null;
             }
+
+            return null;
         }
-
-        return arrDePuntuacionesTemporal.size() != 0 ? arrDePuntuacionesTemporal : null;
-
+        return null;
     }
 
     public void escribirFicheroPreguntas(ArrayList<Pregunta> arrPreg){

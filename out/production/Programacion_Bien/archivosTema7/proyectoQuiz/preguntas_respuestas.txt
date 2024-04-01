@@ -1,0 +1,39 @@
+¿De qué color es una naranja?:Naranja
+¿Capital de España?:Madrid
+¿Distancia al sol desde la tierra?:150000000
+¿Cuántos años tiene un lustro?:5
+¿De quién es el Mito de la caverna?:Platon
+¿Cómo se llama el autor de La metamorfosis?:Kafka
+¿Es cierto que Newton se inspiró en una manzana?:Si
+¿Sienten envidia los perros?:Si
+Quien lo fabrica no lo necesita, a quien lo compra no le sirve y quien lo usa no puede ni verlo ni sentirlo, ¿qué es?:El ataud
+¿Cuál es el gentilicio de Mojácar?:Mojaquero
+¿Las mejores migas son de pan o de harina?:Harina
+¿Qué película se grabó en la playa de Mónsul de Almería?:Indiana Jones
+¿Cual es la lengua mas hablada del mundo?:Ingles
+¿Quien es el mejor piloto de España?:Fernando Alonso
+¿En cuantos continentes se divide la Tierra?:7
+¿cual es el color mas raro del mundo?:Vantablack
+¿cual es la fobia a las palabras largas?:Hipopotomonstrosesquipedaliofobia
+¿Cual es la fobia al queso?:Turofobia
+¿Cuándo acabó la II Guerra Mundial?:1945
+¿Quién inventó la bombilla?:Thomas Edison
+¿En qué país nació Adolf Hitler?:Austria
+¿Cuál es la capital de Alemania?:Berlin
+¿Cuál es el símbolo químico del oro?:Au
+¿Quién es el presidente de España?:Pedro Sanchez
+¿Cuál es el país con más habitantes?:China
+¿Cuál es el océano más grande?:Pacifico
+¿Cuántos kilómetros de costa tiene España?:7661
+¿Cuál es el nombre de la cueva donde se descubrieron las primeras pinturas rupestres del Paleolítico superior?:Altamira
+¿Cuál es el nombre de la ciudad que alberga la famosa Alhambra, un ejemplo de arquitectura islámica en España?:Granada
+¿Cuántos elementos contiene la tabla periódica?:118
+¿Cuál es la capital de Italia?:Roma
+¿Cuántos años tiene Cristiano Ronaldo?:39
+¿Qué contiene el plátano?:Potasio
+¿Qué mamífero tiene pico?:Ornitorrinco
+¿En qué país se encuentra el edificio Opera House?:Australia
+¿Qué famoso apellido pertenece al inventor del teléfono?:Bell
+¿Qué autor tiene el récord de ventas en uno de sus discos musicales?:Michael Jackson
+¿Dónde se encuentra la costa brava?:Cataluña
+¿En que año se inventó la locomotora de vapor?:1802
