@@ -2,6 +2,7 @@ package UD7.proyectoUsuario;
 
 import UD7.proyectoUsuario.model.Usuario;
 import UD7.proyectoUsuario.services.impl.GestionFicheroUsuario;
+import UD7.proyectoUsuario.services.impl.LoggerService;
 import UD7.proyectoUsuario.services.impl.ServiceUser;
 
 import java.util.ArrayList;
@@ -15,8 +16,7 @@ public class AppUsuario {
         ServiceUser servicio = new ServiceUser();
         GestionFicheroUsuario gestion = new GestionFicheroUsuario();
         ArrayList<Usuario> usuarios = new ArrayList<>();
-        //usuarios.addAll(gestion.leerFicheroUsuario(ruta));
-        usuarios = gestion.leerFicheroUsuario(ruta);
+        usuarios.addAll(gestion.leerFicheroUsuario(ruta));
 
         Scanner scan = new Scanner(System.in);
         int opcion;
@@ -31,6 +31,7 @@ public class AppUsuario {
 
                     case 1:
                         servicio.altaUsuario();
+
                         break;
                     case 2:
                         servicio.loginUsuario();

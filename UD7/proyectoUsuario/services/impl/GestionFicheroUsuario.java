@@ -4,11 +4,8 @@ import UD7.proyectoUsuario.model.Usuario;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class GestionFicheroUsuario {
-
-    Scanner scan = new Scanner(System.in);
 
 
     public ArrayList<Usuario> leerFicheroUsuario(String ruta){
@@ -58,13 +55,13 @@ public class GestionFicheroUsuario {
     return arrUsuarioTemporal;
     }
 
-    public void modificarFicheroUsuarios(String ruta, ArrayList<Usuario> u){
+    public void modificarFicheroUsuarios(ArrayList<Usuario> u){
 
         //Se usa el try para que no de excepciones
         try {
 
             //Se crea el archivo
-            File fichero = new File(ruta);
+            File fichero = new File("resources/archivosTema7/users/users.txt");
 
             if (fichero.exists() && fichero.isFile() && fichero.canWrite()){
 
@@ -93,18 +90,10 @@ public class GestionFicheroUsuario {
 
     }
 
-    public void anadirFicheroUsuarios(String ruta){
+    public void anadirFicheroUsuarios(Usuario usuario, String ruta){
 
-        int numero = (int)(Math.random()*1000000000+1);
-        String numeroString = Integer.toString(numero);
-        System.out.println("\nEstablece un nombre de usuario:");
-        String nombre = scan.nextLine();
-
-        System.out.println("Establece una contraseña:");
-        String contrasena = scan.nextLine();
-
-        Usuario usuario = new Usuario(numeroString,nombre,contrasena,false);
         leerFicheroUsuario(ruta).add(usuario);
+
         System.out.println("El usuario ha sido añadido con éxito.\n");
     }
 

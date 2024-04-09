@@ -10,37 +10,46 @@ public class ServiceUser implements BasicServiceUser{
     // ATRIBUTOS
     ArrayList<Usuario> users; //Contiene todos los registros del fichero users.txt
     GestionFicheroUsuario gestion; //Gestión es un objeto para poder llamar a los métodos de GestionFicheroUser
+    LoggerService servicioLogger = new LoggerService();
 
     public ServiceUser(){
         this.users=new ArrayList<>();
-        this.users = gestion.leerFicheroUsuario("usuario.getUser().equalsIgnoreCase(idUser) && usuario.getPassword().equals(password)");
         this.gestion=new GestionFicheroUsuario();
+        this.users = gestion.leerFicheroUsuario("usuario.getUser().equalsIgnoreCase(idUser) && usuario.getPassword().equals(password)");
+
     }
 
     @Override
     public boolean altaUsuario() {
+        users.addAll(gestion.leerFicheroUsuario("leerFicheroUsers()"));
         Scanner scan = new Scanner(System.in);
 
         String idUsuario = "";
         String passwordUsuario = "";
+        String nombreUsuario = "";
 
-        System.out.println("Introduce un usuario:");
+        System.out.println("Introduce un id:");
         idUsuario = scan.nextLine();
         if (userExists(idUsuario)){
             System.out.print("Este usuario no es válido.");
+            return false;
         }else{
-            System.out.print("Introduce una contraseña:");
+            System.out.println("Introduce un nombre de usuario:");
+            nombreUsuario = scan.nextLine();
+            System.out.println("Introduce una contraseña:");
             passwordUsuario = scan.nextLine();
 
-            Usuario u = new Usuario(null,idUsuario,passwordUsuario,false);
-            anadirFicheroUsers(u);
+            Usuario u = new Usuario(idUsuario,nombreUsuario,passwordUsuario,false);
+            anadirFicheroUsers(u,"resources/archivosTema7/users/users.txt");
+            modificarFicheroUsers(users);
+            servicioLogger.logAlta(u.getId());
         }
-        return false;
+        return true;
     }
 
     @Override
     public boolean loginUsuario() {
-
+        users.addAll(gestion.leerFicheroUsuario("leerFicheroUsers()"));
         Scanner scan = new Scanner(System.in);
 
         String idUsuario = "";
@@ -55,6 +64,7 @@ public class ServiceUser implements BasicServiceUser{
             passwordUsuario = scan.nextLine();
 
             if (checkUser(idUsuario,passwordUsuario)){
+                servicioLogger.logLogin(idUsuario);
                 System.out.println("Bienvenid@ "+idUsuario);
                 return true;
             }else{
@@ -100,7 +110,7 @@ public class ServiceUser implements BasicServiceUser{
     public boolean userExists(String idUser) {
         for (int i=0;i<this.users.size();i++){
             Usuario usuario = this.users.get(i); //usuario es el elemento de la posición i de users
-            if (usuario.getId().equalsIgnoreCase(idUser)){
+            if (usuario.getId().equals(idUser)){
                 return true;
             }
         }
@@ -112,13 +122,14 @@ public class ServiceUser implements BasicServiceUser{
         this.users = gestion.leerFicheroUsuario("resources/archivosTema7/users/users.txt");
     }
 
+
     @Override
-    public void anadirFicheroUsers(Usuario u) {
-        gestion.anadirFicheroUsuarios("resources/archivosTema7/users/users.txt");
+    public void anadirFicheroUsers(Usuario u, String r) {
+        gestion.anadirFicheroUsuarios(u,"resources/archivosTema7/users/users.txt");
     }
 
     @Override
-    public void modificarFicheroUsers() {
-        gestion.modificarFicheroUsuarios("resources/archivosTema7/users/users.txt",this.users);
+    public void modificarFicheroUsers(ArrayList<Usuario> users) {
+        gestion.modificarFicheroUsuarios(this.users);
     }
 }
