@@ -1,31 +1,29 @@
-package UD7.proyectoUsuario;
-
-import UD7.proyectoUsuario.model.Usuario;
-import UD7.proyectoUsuario.services.impl.GestionFicheroUsuario;
-import UD7.proyectoUsuario.services.impl.LoggerService;
+package UD7.proyectoUsuario.utils;
 import UD7.proyectoUsuario.services.impl.ServiceUser;
+import java.util.InputMismatchException;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AppUsuario {
 
     public static void main(String[] args) {
 
-        String ruta="resources/archivosTema7/users/users.txt";
         ServiceUser servicio = new ServiceUser();
-        GestionFicheroUsuario gestion = new GestionFicheroUsuario();
-        ArrayList<Usuario> usuarios = new ArrayList<>();
-        usuarios.addAll(gestion.leerFicheroUsuario(ruta));
-
+        servicio.leerFicheroUsers();
         Scanner scan = new Scanner(System.in);
         int opcion;
 
         while (true){
-                System.out.println("1. Dar de alta");
+                System.out.println("\n1. Dar de alta");
                 System.out.println("2. Login");
-                opcion = scan.nextInt();
-                scan.nextLine();
+                try {
+                    opcion = scan.nextInt();
+                    scan.nextLine();
+                }catch (InputMismatchException e) {
+                    System.out.println("\nValor inválido. Por favor, seleccione un número entero.");
+                    scan.nextLine();
+                    continue;
+                }
 
                 switch (opcion){
 
@@ -41,7 +39,7 @@ public class AppUsuario {
                         System.out.println("Cerrando programa...");
                         return;
                     default:
-                        System.out.println("Opción no válida. Inténtelo de nuevo.\n");
+                        System.out.println("\nOpción no válida. Inténtelo de nuevo.");
                         break;
                 }
         }

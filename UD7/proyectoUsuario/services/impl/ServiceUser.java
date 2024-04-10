@@ -21,17 +21,16 @@ public class ServiceUser implements BasicServiceUser{
 
     @Override
     public boolean altaUsuario() {
-        users.addAll(gestion.leerFicheroUsuario("leerFicheroUsers()"));
         Scanner scan = new Scanner(System.in);
 
-        String idUsuario = "";
-        String passwordUsuario = "";
-        String nombreUsuario = "";
+        String idUsuario;
+        String passwordUsuario;
+        String nombreUsuario;
 
         System.out.println("Introduce un id:");
         idUsuario = scan.nextLine();
         if (userExists(idUsuario)){
-            System.out.print("Este usuario no es válido.");
+            System.out.print("Esta id ya existe en el sistema.\n");
             return false;
         }else{
             System.out.println("Introduce un nombre de usuario:");
@@ -41,7 +40,7 @@ public class ServiceUser implements BasicServiceUser{
 
             Usuario u = new Usuario(idUsuario,nombreUsuario,passwordUsuario,false);
             anadirFicheroUsers(u,"resources/archivosTema7/users/users.txt");
-            modificarFicheroUsers(users);
+            users.add(u);
             servicioLogger.logAlta(u.getId());
         }
         return true;
@@ -52,8 +51,8 @@ public class ServiceUser implements BasicServiceUser{
         users.addAll(gestion.leerFicheroUsuario("leerFicheroUsers()"));
         Scanner scan = new Scanner(System.in);
 
-        String idUsuario = "";
-        String passwordUsuario = "";
+        String idUsuario;
+        String passwordUsuario;
 
         System.out.print("Introduzca su idUsuario: ");
         idUsuario = scan.nextLine();
@@ -65,14 +64,14 @@ public class ServiceUser implements BasicServiceUser{
 
             if (checkUser(idUsuario,passwordUsuario)){
                 servicioLogger.logLogin(idUsuario);
-                System.out.println("Bienvenid@ "+idUsuario);
+                System.out.println("Te damos la bienvenida.");
                 return true;
             }else{
-                System.out.println("Creedenciales incorrectas");
+                System.out.println("Creedenciales incorrectas.");
                 return false;
             }
         }else{
-            System.out.println("El usuario no existe en el sistema.");
+            System.out.println("\nEl usuario no existe en el sistema.");
             return false;
         }
     }

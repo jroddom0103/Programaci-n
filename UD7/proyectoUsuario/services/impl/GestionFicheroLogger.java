@@ -13,9 +13,9 @@ public class GestionFicheroLogger {
             File archivo = new File(ruta);
             FileWriter fe = new FileWriter(archivo,true);
             BufferedWriter be = new BufferedWriter(fe);
-
-            be.write(mensaje);
             be.write("\n");
+            be.write(mensaje);
+
 
             //Con .close se cierran los flujos
             be.close();
