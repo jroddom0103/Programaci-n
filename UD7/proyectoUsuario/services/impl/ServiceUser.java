@@ -1,17 +1,24 @@
 package UD7.proyectoUsuario.services.impl;
+
+//Bibliotecas
 import UD7.proyectoUsuario.model.Usuario;
 import UD7.proyectoUsuario.services.api.BasicServiceUser;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Clase ServiceUser.
+ * Se encarga de ofrecer servicios a nivel de usuarios.
+ * Implementa la interfaz BasicServiceUser.
+ */
 public class ServiceUser implements BasicServiceUser{
 
     // ATRIBUTOS
-    ArrayList<Usuario> users; //Contiene todos los registros del fichero users.txt
-    GestionFicheroUsuario gestion; //Gestión es un objeto para poder llamar a los métodos de GestionFicheroUser
-    LoggerService servicioLogger = new LoggerService();
+    ArrayList<Usuario> users; //Contiene todos los registros del fichero users.txt.
+    GestionFicheroUsuario gestion; //gestion es un objeto para poder llamar a los métodos de GestionFicheroUser.
+    LoggerService servicioLogger = new LoggerService(); //servicioLogger es un objeto para llamar a los métodos de LoggerService.
 
+    // Método constructor de la clase ServiceUser.
     public ServiceUser(){
         this.users=new ArrayList<>();
         this.gestion=new GestionFicheroUsuario();
@@ -19,6 +26,12 @@ public class ServiceUser implements BasicServiceUser{
 
     }
 
+    /**
+     * Método altaUsuario.
+     * Mete la información introducida en una variable de tipo Usuario y las mete en un ArrayList de usuarios.
+     * Además, registra en el archivo logs.txt el usuario que se ha dado de alta y cuándo lo hizo.
+     * @return
+     */
     @Override
     public boolean altaUsuario() {
         Scanner scan = new Scanner(System.in);
