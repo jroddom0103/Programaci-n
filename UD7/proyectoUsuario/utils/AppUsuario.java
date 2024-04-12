@@ -1,6 +1,7 @@
 package UD7.proyectoUsuario.utils;
 
 //Bibliotecas
+import UD7.proyectoUsuario.services.impl.ServiceCine;
 import UD7.proyectoUsuario.services.impl.ServiceUser;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -20,6 +21,7 @@ public class AppUsuario {
         ServiceUser servicio = new ServiceUser();
         //Llamada al método que leerá los datos del usuario en el txt.
         servicio.leerFicheroUsers();
+        ServiceCine servicioCine = new ServiceCine("Cine1");
 
         boolean esLogin=false;
 
@@ -95,7 +97,7 @@ public class AppUsuario {
 
                 //Si opcion=1 se llamará al método
                 case 1:
-                    servicio.altaUsuario();
+                    servicioCine.mostrarButacas();
 
                     break;
 

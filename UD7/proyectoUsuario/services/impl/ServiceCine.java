@@ -25,7 +25,7 @@ public class ServiceCine implements BasicServiceCine {
         [null,null,null]
          */
 
-        this.salaDeCine = gestion.leerFicheroCine(""); //Aquí vamos a leer el fichero para llenar el array de Butaca.
+        this.salaDeCine = gestion.leerFicheroCine("resources/archivosTema7/entradasVendidas/entradasVendidas.txt"); //Aquí vamos a leer el fichero para llenar el array de Butaca.
 
     }
 
@@ -34,9 +34,13 @@ public class ServiceCine implements BasicServiceCine {
     public void mostrarButacas() {
         for (int i = 0; i<salaDeCine.length;i++){
             for (int j=0;i<salaDeCine.length;i++){
-
-                if ()
+                if (salaDeCine[i][j]==null){
+                    System.out.println("__");
+                }else{
+                    System.out.println("XX");
+                }
             }
+
         }
     }
 
