@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class ServiceUser implements BasicServiceUser{
 
-    // ATRIBUTOS
+    //Declaración de variables
     ArrayList<Usuario> users; //Contiene todos los registros del fichero users.txt.
     GestionFicheroUsuario gestion; //gestion es un objeto para poder llamar a los métodos de GestionFicheroUser.
     LoggerService servicioLogger = new LoggerService(); //servicioLogger es un objeto para llamar a los métodos de LoggerService.
@@ -30,98 +30,127 @@ public class ServiceUser implements BasicServiceUser{
      * Método altaUsuario.
      * Mete la información introducida en una variable de tipo Usuario y las mete en un ArrayList de usuarios.
      * Además, registra en el archivo logs.txt el usuario que se ha dado de alta y cuándo lo hizo.
-     * @return
+     * @return true si se realizó con éxito el alta | false si no se pudo hacer.
      */
     @Override
     public boolean altaUsuario() {
+
+        //Inicialización y declaración de objeto de tipo Scanner
         Scanner scan = new Scanner(System.in);
 
+        //Declaración de variables de usuarios
         String idUsuario;
         String passwordUsuario;
         String nombreUsuario;
 
         System.out.println("Introduce un id:");
         idUsuario = scan.nextLine();
+
+        //Estructura condicional que if que llama al método que comprueba si la id ya está registrada, y si lo hace, devuelve
+        //un mensaje de que no se puede dar de alta con esa id y se retorna falso.
         if (userExists(idUsuario)){
             System.out.print("Esta id ya existe en el sistema.\n");
             return false;
+        //Si no coincide con la id de ningún usuario, entonces se permite continuar agregando datos.
         }else{
             System.out.println("Introduce un nombre de usuario:");
             nombreUsuario = scan.nextLine();
             System.out.println("Introduce una contraseña:");
             passwordUsuario = scan.nextLine();
 
+            //Inicialización y declaración de objeto de tipo Usuario con los datos introducidos anteriormente.
             Usuario u = new Usuario(idUsuario,nombreUsuario,passwordUsuario,false);
+            //Llamada a método que almacena los datos del usuario en el fichero users.txt.
             anadirFicheroUsers(u,"resources/archivosTema7/users/users.txt");
+            //Se recoge el usuario creado en el ArrayList<Usuario> llamado users.
             users.add(u);
+            //Se llama al método logAlta de la clase servicioLogger para que almacene la información
+            //con respecto a quién y en qué momento se realizó el alta del usuario.
             servicioLogger.logAlta(u.getId());
         }
         return true;
     }
 
+    /**
+     * Método loginUsuario
+     * Este método se encarga de verificar si la información proporcionada coincide con la información
+     * en los datos. Si coincide, te lleva a la zona del cine. Si no coincide, te devuelve al menú principal.
+     * @return true si se logró el iniciar sesión | false si no se pudo conseguir.
+     */
     @Override
     public boolean loginUsuario() {
+        //Este código permite pasar la información del ArrayList<Usuario> formado por los usuarios registrados en el txt
+        //que devuelve leerFicheroUsuario al ArrayList<Usuario> users.
         users.addAll(gestion.leerFicheroUsuario("leerFicheroUsers()"));
+
+        //Inicialización y declaración de objeto de tipo Scanner.
         Scanner scan = new Scanner(System.in);
 
+        //Declaración de variables.
         String idUsuario;
         String passwordUsuario;
 
         System.out.print("Introduzca su idUsuario: ");
         idUsuario = scan.nextLine();
 
-        // Comprobamos en el fichero si el idUser existe
+        //Estructura condicional if que llama al método que comprueba si el idUsuario existe en el ArrayList<Usuario> users.
         if (userExists(idUsuario)){
             System.out.print("Introduzca su contraseña: ");
             passwordUsuario = scan.nextLine();
 
+            //Estructura condicional if que llama al método que comprueba si el idUsuario y la contraseña existen en el
+            //ArrayList<Usuario> users.
             if (checkUser(idUsuario,passwordUsuario)){
+                //Método de la clase servicioLogger que guarda quién y cuándo hizo login un usuario del sistema.
                 servicioLogger.logLogin(idUsuario);
-                System.out.println("Te damos la bienvenida.");
+                System.out.println("\nSesión iniciada.");
                 return true;
             }else{
                 System.out.println("Creedenciales incorrectas.");
                 return false;
             }
+        //Si no coincide, se retorna falso.
         }else{
             System.out.println("\nEl usuario no existe en el sistema.");
             return false;
         }
     }
 
+    /**
+     * Método checkUser.
+     * Método que comprueba si el id y la contraseña introducida coinciden con sus respectivos datos en el ArrayList users.
+     * @param idUser Id del usuario a comprobar.
+     * @param password Contraseña del usuario a comprobar.
+     * @return true si coinciden | false si no coinciden.
+     */
     @Override
     public boolean checkUser(String idUser, String password) {
 
-        // 1º manera de hacerlo
+        //Estructura de bucle for que compara la id con la contraseña de todos los usuarios del ArrayList<Usuario> users.
         for (int i=0;i<this.users.size();i++){
-            Usuario usuario = this.users.get(i); //usuario es el elemento de la posición i de users
+            //Declaración e inicialización de objeto de tipo Usuario.
+            Usuario usuario = this.users.get(i);
+            //Estructura condicional que iguala la id y la contraseña del usuario seleccionado con la i.
             if (usuario.getId().equalsIgnoreCase(idUser) && usuario.getContrasena().equals(password)){
                 return true;
             }
         }
-
-        /*
-        // 2º manera de hacerlo
-        for (User usuario:this.users){
-            if (usuario.getUser().equalsIgnoreCase(idUser) && usuario.getPassword().equals(password)){
-                return true;
-            }
-        }
-        */
-
-        /* 3º manera de hacerlo
-        return this.users.stream()
-                .filter(usuario->usuario.getUser().equalsIgnoreCase(idUser) && usuario.getPassword().equals(password))
-                .findFirst()
-                .isEmpty();
-        */
         return false;
     }
 
+    /**
+     * Método userExists.
+     * Método que comprueba si la id que pasa por parámetros coincide con la id del ArrayList<Usuario> users.
+     * @param idUser Id del usuario a comprobar.
+     * @return true si coinciden | false si no coinciden.
+     */
     @Override
     public boolean userExists(String idUser) {
+        //Estructura de bucle for que va comparando la id de cada usuario del ArrayList con la id que se pasa por parámetros.
         for (int i=0;i<this.users.size();i++){
-            Usuario usuario = this.users.get(i); //usuario es el elemento de la posición i de users
+            //Declaración e inicialización de objeto de tipo Usuario.
+            Usuario usuario = this.users.get(i);
+            //Estructura condicional que iguala la id del usuario seleccionado con la i.
             if (usuario.getId().equals(idUser)){
                 return true;
             }
@@ -129,12 +158,20 @@ public class ServiceUser implements BasicServiceUser{
         return false;
     }
 
+    /**
+     * Método leerFicheroUsers
+     * Método que llama al método leerFicheroUsuario y almacena el ArrayList que devuelve en el ArrayList users.
+     */
     @Override
     public void leerFicheroUsers() {
         this.users = gestion.leerFicheroUsuario("resources/archivosTema7/users/users.txt");
     }
 
-
+    /**
+     * Método anadirFicheroUsers
+     * @param u
+     * @param r
+     */
     @Override
     public void anadirFicheroUsers(Usuario u, String r) {
         gestion.anadirFicheroUsuarios(u,"resources/archivosTema7/users/users.txt");
