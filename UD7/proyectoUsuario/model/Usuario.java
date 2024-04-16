@@ -2,13 +2,16 @@ package UD7.proyectoUsuario.model;
 
 import java.util.Objects;
 
+//Clase Usuario.
 public class Usuario {
 
+    //Declaración de variables de Usuario.
     private String id;
     private String nombre;
     private String contrasena;
     private boolean esAdmin;
 
+    //Método constructor de la clase Usuario.
     public Usuario(String id, String nombre, String contrasena, boolean esAdmin) {
         setId(id);
         setNombre(nombre);
@@ -16,6 +19,7 @@ public class Usuario {
         setEsAdmin(esAdmin);
     }
 
+    //Clase equals.
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -24,6 +28,7 @@ public class Usuario {
         return Objects.equals(id, usuario.id);
     }
 
+    //Clase toString.
     @Override
     public String toString() {
         return "Usuario{" +
@@ -34,11 +39,7 @@ public class Usuario {
                 '}';
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
+    //Getters y setters.
     public String getId() {
         return id;
     }

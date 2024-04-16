@@ -1,5 +1,6 @@
 package UD7.proyectoUsuario.services.impl;
 
+//Bibliotecas
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -8,6 +9,7 @@ public class GestionFicheroLogger {
 
     public void anadirFichero(String mensaje, String ruta){
 
+        //Se controlan las excepciones
         try {
             //Aquí se escribe en el fichero
             File archivo = new File(ruta);

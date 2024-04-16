@@ -159,7 +159,7 @@ public class ServiceUser implements BasicServiceUser{
     }
 
     /**
-     * Método leerFicheroUsers
+     * Método leerFicheroUsers.
      * Método que llama al método leerFicheroUsuario y almacena el ArrayList que devuelve en el ArrayList users.
      */
     @Override
@@ -168,15 +168,21 @@ public class ServiceUser implements BasicServiceUser{
     }
 
     /**
-     * Método anadirFicheroUsers
-     * @param u
-     * @param r
+     * Método anadirFicheroUsers.
+     * Método que llama al método anadirFicheroUsuarios y le pasa un usuario y una ruta.
+     * @param u Usuario.
+     * @param r Ruta.
      */
     @Override
     public void anadirFicheroUsers(Usuario u, String r) {
-        gestion.anadirFicheroUsuarios(u,"resources/archivosTema7/users/users.txt");
+        gestion.anadirFicheroUsuarios(u,r);
     }
 
+    /**
+     * Método modificarFicheroUsers.
+     * Método que pasa un array de usuarios al método modificarFicheroUsers.
+     * @param users Array de usuarios.
+     */
     @Override
     public void modificarFicheroUsers(ArrayList<Usuario> users) {
         gestion.modificarFicheroUsuarios(this.users);

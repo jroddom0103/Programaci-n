@@ -28,7 +28,7 @@ public class AppUsuario {
         //Declaración de entero que permitirá tomar elegir diferentes opciones en el menú.
         int opcion;
 
-        //Estructura de bucle que siempre estará activa. Funciona de menú.
+        //Estructura de bucle que se activará cuando el usuario no haya iniciado sesión, es decir, mientras esLogin sea negativa.
         while (!esLogin){
                 System.out.println("\n1. Dar de alta");
                 System.out.println("2. Login");
@@ -73,6 +73,8 @@ public class AppUsuario {
                         break;
                 }
         }
+
+        //Mientras que esLogin sea true, se inicia el otro menú, pues ya el usuario ha iniciado sesión.
         while(esLogin){
             System.out.println("\n1. Mostrar butacas.");
             System.out.println("2. Comprar entrada.");
@@ -95,7 +97,7 @@ public class AppUsuario {
             //Estructura condicional que permite escoger entre varias opciones.
             switch (opcion){
 
-                //Si opcion=1 se llamará al método
+                //Si opcion=1 se llamará al método mostrarButacas.
                 case 1:
                     servicioCine.mostrarButacas();
 
