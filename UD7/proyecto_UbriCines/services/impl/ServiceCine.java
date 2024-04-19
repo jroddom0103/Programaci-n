@@ -4,6 +4,8 @@ package UD7.proyecto_UbriCines.services.impl;
 import UD7.proyecto_UbriCines.model.Butaca;
 import UD7.proyecto_UbriCines.services.api.BasicServiceCine;
 
+import java.util.Scanner;
+
 public class ServiceCine implements BasicServiceCine {
 
     String ruta = "C:\\Users\\jroddom0103\\Desktop\\1-DAW\\Programacion_Bien\\src\\UD7\\proyecto_UbriCines\\resources\\entradasVendidas.txt";
@@ -49,7 +51,25 @@ public class ServiceCine implements BasicServiceCine {
     @Override
     public boolean comprarEntrada() {
 
-        
+        Scanner scan = new Scanner(System.in);
+        int fila;
+        int asiento;
+
+        System.out.println("Selecciona fila:");
+        fila = scan.nextInt();
+        System.out.println("Selecciona asiento:");
+        asiento = scan.nextInt();
+
+        for (int i = 0; i < salaDeCine.length; i++) {
+            for (int j = 0; j < salaDeCine[i].length; j++) {
+                if (salaDeCine[fila][asiento]==salaDeCine[i][j] && salaDeCine[i][j].getIdUser()==null) {
+
+                } else {
+
+                }
+            }
+
+        }
 
         return false;
     }
