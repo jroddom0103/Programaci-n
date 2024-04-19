@@ -10,7 +10,6 @@ public class FramePrincipalCalculadora extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ImageIcon imagen = new ImageIcon("C:\\Users\\jroddom0103\\Downloads\\spain_330557.png");
 
-        
 
         this.setIconImage(imagen.getImage());
         this.setVisible(true);
