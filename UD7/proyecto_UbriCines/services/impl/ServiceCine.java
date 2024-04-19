@@ -33,20 +33,24 @@ public class ServiceCine implements BasicServiceCine {
 
     @Override
     public void mostrarButacas() {
-        for (int i = 0; i<salaDeCine.length;i++){
-            for (int j=0;i<salaDeCine.length;j++){
-                if (salaDeCine[i][j]==null){
-                    System.out.println("__");
-                }else{
-                    System.out.println("XX");
+        for (int i = 0; i < salaDeCine.length; i++) {
+            for (int j = 0; j < salaDeCine[i].length; j++) {
+                if (salaDeCine[i][j] == null) {
+                    System.out.print("__ ");
+                } else {
+                    System.out.print("XX ");
                 }
             }
-
+            System.out.println();
         }
     }
 
+
     @Override
     public boolean comprarEntrada() {
+
+        
+
         return false;
     }
 
