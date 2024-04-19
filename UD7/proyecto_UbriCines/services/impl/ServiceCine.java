@@ -40,7 +40,13 @@ public class ServiceCine implements BasicServiceCine {
                 }else{
                     System.out.println("XX");
                 }
+                if (salaDeCine[j][i]==null){
+                    System.out.println("__");
+                }else{
+                    System.out.println("XX");
+                }
             }
+
 
         }
     }
