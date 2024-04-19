@@ -1,7 +1,7 @@
 package UD7.proyecto_UbriCines.services.impl;
 
 //Bibliotecas
-import UD7.proyectoUsuario.model.Butaca;
+import UD7.proyecto_UbriCines.model.Butaca;
 
 import java.io.*;
 
@@ -51,7 +51,7 @@ public class GestionFicheroCine{
                     int asientoint = Integer.parseInt(asiento);
 
                     //Creación del nuevo usuario
-                    UD7.proyectoUsuario.model.Butaca b = new UD7.proyectoUsuario.model.Butaca(filaint,asientoint,id_user);
+                    Butaca b = new Butaca(filaint,asientoint,id_user);
 
                     //Se añade el usuario al Array
                     butacas[filaint][asientoint] = b;

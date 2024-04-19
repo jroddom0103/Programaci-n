@@ -1,6 +1,6 @@
 package UD7.proyecto_UbriCines.services.api;
 
-import UD7.proyectoUsuario.model.Butaca;
+import UD7.proyecto_UbriCines.model.Butaca;
 
 public interface BasicServiceCine {
 

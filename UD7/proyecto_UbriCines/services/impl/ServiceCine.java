@@ -1,7 +1,7 @@
 package UD7.proyecto_UbriCines.services.impl;
 
 //Bibliotecas
-import UD7.proyectoUsuario.model.Butaca;
+import UD7.proyecto_UbriCines.model.Butaca;
 import UD7.proyecto_UbriCines.services.api.BasicServiceCine;
 
 public class ServiceCine implements BasicServiceCine {
