@@ -1,4 +1,4 @@
-package UD7.proyectoUsuario.services.api;
+package UD7.proyecto_UbriCines.services.api;
 
 import UD5.LoginSession.Clases.User;
 import UD7.proyectoUsuario.model.Usuario;

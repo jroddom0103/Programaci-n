@@ -1,8 +1,8 @@
-package UD7.proyectoUsuario.utils;
+package UD7.proyecto_UbriCines.utils;
 
 //Bibliotecas
-import UD7.proyectoUsuario.services.impl.ServiceCine;
-import UD7.proyectoUsuario.services.impl.ServiceUser;
+import UD7.proyecto_UbriCines.services.impl.ServiceCine;
+import UD7.proyecto_UbriCines.services.impl.ServiceUser;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -32,6 +32,7 @@ public class AppUsuario {
         while (!esLogin){
                 System.out.println("\n1. Dar de alta");
                 System.out.println("2. Login");
+                System.out.println("0. Salir");
                 //Controlador de excepciones que si se le introduce un número diferente a un entero, colocará un mensaje y podrás colocar la opción de nuevo.
                 try {
                     //Recoge el valor introducido por teclado.

@@ -1,8 +1,8 @@
-package UD7.proyectoUsuario.services.impl;
+package UD7.proyecto_UbriCines.services.impl;
 
 //Bibliotecas
 import UD7.proyectoUsuario.model.Usuario;
-import UD7.proyectoUsuario.services.api.BasicServiceUser;
+import UD7.proyecto_UbriCines.services.api.BasicServiceUser;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,7 +22,7 @@ public class ServiceUser implements BasicServiceUser{
     public ServiceUser(){
         this.users=new ArrayList<>();
         this.gestion=new GestionFicheroUsuario();
-        this.users = gestion.leerFicheroUsuario("usuario.getUser().equalsIgnoreCase(idUser) && usuario.getPassword().equals(password)");
+        this.users = gestion.leerFicheroUsuario("C:\\Users\\jroddom0103\\Desktop\\1-DAW\\Programacion_Bien\\src\\UD7\\proyecto_UbriCines\\resources\\users.txt");
 
     }
 
@@ -61,7 +61,7 @@ public class ServiceUser implements BasicServiceUser{
             //Inicialización y declaración de objeto de tipo Usuario con los datos introducidos anteriormente.
             Usuario u = new Usuario(idUsuario,nombreUsuario,passwordUsuario,false);
             //Llamada a método que almacena los datos del usuario en el fichero users.txt.
-            anadirFicheroUsers(u,"resources/archivosTema7/users/users.txt");
+            anadirFicheroUsers(u,"C:\\Users\\jroddom0103\\Desktop\\1-DAW\\Programacion_Bien\\src\\UD7\\proyecto_UbriCines\\resources\\users.txt");
             //Se recoge el usuario creado en el ArrayList<Usuario> llamado users.
             users.add(u);
             //Se llama al método logAlta de la clase servicioLogger para que almacene la información
@@ -81,7 +81,7 @@ public class ServiceUser implements BasicServiceUser{
     public boolean loginUsuario() {
         //Este código permite pasar la información del ArrayList<Usuario> formado por los usuarios registrados en el txt
         //que devuelve leerFicheroUsuario al ArrayList<Usuario> users.
-        users.addAll(gestion.leerFicheroUsuario("leerFicheroUsers()"));
+        //users.addAll(gestion.leerFicheroUsuario("leerFicheroUsers()"));
 
         //Inicialización y declaración de objeto de tipo Scanner.
         Scanner scan = new Scanner(System.in);
@@ -164,7 +164,7 @@ public class ServiceUser implements BasicServiceUser{
      */
     @Override
     public void leerFicheroUsers() {
-        this.users = gestion.leerFicheroUsuario("resources/archivosTema7/users/users.txt");
+        this.users = gestion.leerFicheroUsuario("C:\\Users\\jroddom0103\\Desktop\\1-DAW\\Programacion_Bien\\src\\UD7\\proyecto_UbriCines\\resources\\users.txt");
     }
 
     /**

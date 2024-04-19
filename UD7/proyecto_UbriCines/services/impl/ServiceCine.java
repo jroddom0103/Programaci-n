@@ -1,12 +1,12 @@
-package UD7.proyectoUsuario.services.impl;
+package UD7.proyecto_UbriCines.services.impl;
 
 //Bibliotecas
 import UD7.proyectoUsuario.model.Butaca;
-import UD7.proyectoUsuario.services.api.BasicServiceCine;
+import UD7.proyecto_UbriCines.services.api.BasicServiceCine;
 
 public class ServiceCine implements BasicServiceCine {
 
-    String ruta = "resources/archivosTema7/entradasVendidas/entradasVendidas.txt";
+    String ruta = "C:\\Users\\jroddom0103\\Desktop\\1-DAW\\Programacion_Bien\\src\\UD7\\proyecto_UbriCines\\resources\\entradasVendidas.txt";
     private String nombreCine;
     private static final int NFILAS = 10;
     private static final int NASIENTOS = 10;
@@ -26,7 +26,7 @@ public class ServiceCine implements BasicServiceCine {
         [null,null,null]
          */
 
-        this.salaDeCine = gestion.leerFicheroCine("resources/archivosTema7/entradasVendidas/entradasVendidas.txt"); //Aquí vamos a leer el fichero para llenar el array de Butaca.
+        this.salaDeCine = gestion.leerFicheroCine("C:\\Users\\jroddom0103\\Desktop\\1-DAW\\Programacion_Bien\\src\\UD7\\proyecto_UbriCines\\resources\\entradasVendidas.txt"); //Aquí vamos a leer el fichero para llenar el array de Butaca.
 
     }
 

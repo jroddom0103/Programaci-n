@@ -1,7 +1,7 @@
-package UD7.proyectoUsuario.services.impl;
+package UD7.proyecto_UbriCines.services.impl;
 
 //Bibliotecas
-import UD7.proyectoUsuario.services.api.BasicLoggerService;
+import UD7.proyecto_UbriCines.services.api.BasicLoggerService;
 import java.time.LocalDateTime;
 
 //Clase LoggerService, que implementa la interfaz BasicLoggerService
@@ -56,6 +56,6 @@ public class LoggerService implements BasicLoggerService {
     @Override
     public void anadirFicheroLogger(String mensaje) {
 
-        this.gestion.anadirFichero(mensaje,"resources/archivosTema7/logs/logs.txt");
+        this.gestion.anadirFichero(mensaje,"C:\\Users\\jroddom0103\\Desktop\\1-DAW\\Programacion_Bien\\src\\UD7\\proyecto_UbriCines\\resources\\logs.txt");
     }
 }

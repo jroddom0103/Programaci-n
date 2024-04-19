@@ -1,4 +1,4 @@
-package UD7.proyectoUsuario.services.api;
+package UD7.proyecto_UbriCines.services.api;
 
 import UD7.proyectoUsuario.model.Butaca;
 
