@@ -22,7 +22,7 @@ public class ServiceUser implements BasicServiceUser{
     public ServiceUser(){
         this.users=new ArrayList<>();
         this.gestion=new GestionFicheroUsuario();
-        this.users = gestion.leerFicheroUsuario("C:\\Users\\jroddom0103\\Desktop\\1-DAW\\Programacion_Bien\\src\\UD7\\proyecto_UbriCines\\resources\\users.txt");
+        this.users = gestion.leerFicheroUsuario("resources/archivosTema7/users/users.txt");
 
     }
 
@@ -61,7 +61,7 @@ public class ServiceUser implements BasicServiceUser{
             //Inicialización y declaración de objeto de tipo Usuario con los datos introducidos anteriormente.
             Usuario u = new Usuario(idUsuario,nombreUsuario,passwordUsuario,false);
             //Llamada a método que almacena los datos del usuario en el fichero users.txt.
-            anadirFicheroUsers(u,"C:\\Users\\jroddom0103\\Desktop\\1-DAW\\Programacion_Bien\\src\\UD7\\proyecto_UbriCines\\resources\\users.txt");
+            anadirFicheroUsers(u,"resources/archivosTema7/users/users.txt");
             //Se recoge el usuario creado en el ArrayList<Usuario> llamado users.
             users.add(u);
             //Se llama al método logAlta de la clase servicioLogger para que almacene la información
@@ -164,7 +164,7 @@ public class ServiceUser implements BasicServiceUser{
      */
     @Override
     public void leerFicheroUsers() {
-        this.users = gestion.leerFicheroUsuario("C:\\Users\\jroddom0103\\Desktop\\1-DAW\\Programacion_Bien\\src\\UD7\\proyecto_UbriCines\\resources\\users.txt");
+        this.users = gestion.leerFicheroUsuario("resources/archivosTema7/users/users.txt");
     }
 
     /**
