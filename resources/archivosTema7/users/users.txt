@@ -1,0 +1,8 @@
+0:Admin:1234:true
+15:usuario:1234:false
+1:usuario:1234:false
+8481:usuario:1234:false
+fjdafj:38981:@#|~@#|~#@:false
+@|€|€:|€|@~~|~@:~||~|€|#€#:false
+100:Pepito:1234:false
+200:Pepepe:1234:false
