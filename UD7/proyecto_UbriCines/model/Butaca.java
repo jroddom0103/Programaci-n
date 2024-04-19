@@ -1,4 +1,4 @@
-package UD7.proyectoUsuario.model;
+package UD7.proyecto_UbriCines.model;
 
 public class Butaca {
 
