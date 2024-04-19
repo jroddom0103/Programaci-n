@@ -34,7 +34,7 @@ public class ServiceCine implements BasicServiceCine {
     @Override
     public void mostrarButacas() {
         for (int i = 0; i<salaDeCine.length;i++){
-            for (int j=0;i<salaDeCine.length;i++){
+            for (int j=0;i<salaDeCine.length;j++){
                 if (salaDeCine[i][j]==null){
                     System.out.println("__");
                 }else{
