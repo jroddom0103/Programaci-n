@@ -16,6 +16,8 @@ public class PanelLogin extends JPanel{
     JTextField user = new JTextField();
     JTextField pass = new JTextField();
     ServiceUser serviceUser = new ServiceUser();
+    JLabel registrado = new JLabel();
+    JTextField textoUsuario = new JTextField("");
     MouseListener listener = new MouseAdapter() {
 
         @Override
@@ -23,9 +25,16 @@ public class PanelLogin extends JPanel{
 
             if (serviceUser.loginUI(user.getText(),pass.getText())){
                 System.out.println("Está registrado.");
+                registrado.setText("Está registrado.");
             }else{
                 System.out.println("Pa tu casa.");
+                registrado.setText("Pa tu casa.");
             }
+
+            if (textoUsuario.equals("")){
+                textoUsuario.setBackground(new Color(255, 108, 108));
+            }
+
         }
         @Override
         public void mouseEntered(MouseEvent e) {
@@ -46,14 +55,13 @@ public class PanelLogin extends JPanel{
 
     public PanelLogin(){
 
-        
+
         this.setBackground(new Color(210, 103, 255));
         this.setLayout(null);
 
         JLabel usuario = new JLabel("Usuario:");
         usuario.setBounds(180,200,150,32);
 
-        JTextField textoUsuario = new JTextField("");
         textoUsuario.setBounds(240,200,150,32);
 
         JLabel contrasena = new JLabel("Contraseña:");
@@ -67,11 +75,14 @@ public class PanelLogin extends JPanel{
 
         bEnviar.addMouseListener(listener);
 
+        registrado.setBounds(270,450,150,32);
+
         this.add(usuario);
         this.add(textoUsuario);
         this.add(contrasena);
         this.add(textocontrasena);
         this.add(bEnviar);
+        this.add(registrado);
 
     }
 }
