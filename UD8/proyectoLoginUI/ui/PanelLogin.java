@@ -12,39 +12,41 @@ import java.awt.event.MouseListener;
 
 public class PanelLogin extends JPanel{
 
+
+    JTextField user = new JTextField();
+    JTextField pass = new JTextField();
+    ServiceUser serviceUser = new ServiceUser();
+    MouseListener listener = new MouseAdapter() {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+
+            if (serviceUser.loginUI(user.getText(),pass.getText())){
+                System.out.println("Está registrado.");
+            }else{
+                System.out.println("Pa tu casa.");
+            }
+        }
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            JButton b = (JButton) e.getSource();
+            b.setBackground(new Color(193, 224, 255));
+            b.setBorder(new BevelBorder(1));
+            b.setBorder(new LineBorder(new Color(0,0,0),2));
+            b.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+            JButton b = (JButton) e.getSource();
+            b.setBackground(new Color(0xB8B8EC));
+            b.setBorder(new LineBorder(new Color(0,0,0),1));
+        }
+    };
+
     public PanelLogin(){
 
-        JTextField user = new JTextField();
-        JTextField pass = new JTextField();
-        ServiceUser serviceUser = new ServiceUser();
-
-        MouseListener listener = new MouseAdapter() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (serviceUser.loginUI(user.getText(),pass.getText())){
-                    System.out.println("Está registrado.");
-                }else{
-                    System.out.println("Pa tu casa.");
-                }
-            }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                JButton b = (JButton) e.getSource();
-                b.setBackground(new Color(193, 224, 255));
-                b.setBorder(new BevelBorder(1));
-                b.setBorder(new LineBorder(new Color(0,0,0),2));
-                b.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                JButton b = (JButton) e.getSource();
-                b.setBackground(new Color(0xB8B8EC));
-                b.setBorder(new LineBorder(new Color(0,0,0),1));
-            }
-        };
-
+        
         this.setBackground(new Color(210, 103, 255));
         this.setLayout(null);
 
@@ -70,7 +72,6 @@ public class PanelLogin extends JPanel{
         this.add(contrasena);
         this.add(textocontrasena);
         this.add(bEnviar);
-
 
     }
 }
