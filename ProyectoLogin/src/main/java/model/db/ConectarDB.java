@@ -23,7 +23,7 @@ public class ConectarDB {
 
     public void realizarConexion() {
 
-        this.url = "jdbc:mysql://localhost:3306/dbapp?user=root&password=";
+        this.url = "jdbc:mysql://localhost:3306/"+this.nombreDB+"?user="+this.user+"&password="+this.pass;
         try {
             this.connection = DriverManager.getConnection(this.url);
             Statement st = this.connection.createStatement();
