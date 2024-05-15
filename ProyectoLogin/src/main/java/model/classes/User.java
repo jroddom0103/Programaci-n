@@ -5,16 +5,15 @@ import java.util.Objects;
 public class User {
 
     private String id;
-    private String name;
+    private String user;
     private String pass;
     private boolean isAdmin;
 
 
-    public User(String id, String name, String pass, boolean isAdmin){
+    public User(String id, String user, String pass){
         this.id = id;
-        this.name = name;
+        this.user = user;
         this.pass = pass;
-        this.isAdmin = isAdmin;
     }
 
     public String getId() {
