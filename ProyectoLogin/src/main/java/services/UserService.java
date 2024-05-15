@@ -17,7 +17,6 @@ public class UserService {
 
     public boolean checkUserExists(User user){
 
-
         return true;
     }
 
