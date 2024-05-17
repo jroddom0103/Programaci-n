@@ -54,7 +54,7 @@ public class PanelLogin extends JPanel {
         public void mouseClicked(MouseEvent e) {
 
             // Comprueba si el usuario ha introducido correctamente sus credenciales
-            if (serviceUser.checkUserExists(new User(user.getText(),pass.getText(),user.getText(),true))){
+            if (serviceUser.checkUserExists(new User(user.getText(),pass.getText(),user.getText()))){
                 // Si se han introducido correctamente, se procede a cargar el panelOpciones
                 cargarPanelMainMenu();
             } else {

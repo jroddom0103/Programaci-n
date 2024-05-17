@@ -24,13 +24,9 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getUser(){return user;}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setUser(String user){this.user = user;}
 
     public String getPass() {
         return pass;
@@ -40,18 +36,9 @@ public class User {
         this.pass = pass;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
-
-
     @Override
     public String toString() {
-        return "El user se llama "+this.name+" con id: "+this.id;
+        return "El user se llama "+this.user+" con id: "+this.id;
     }
 
     @Override
@@ -64,7 +51,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, pass, isAdmin);
+        return Objects.hash(id, user, pass);
     }
 
 }

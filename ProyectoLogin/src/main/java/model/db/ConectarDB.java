@@ -25,16 +25,19 @@ public class ConectarDB {
 
         this.url = "jdbc:mysql://localhost:3306/"+this.nombreDB+"?user="+this.user+"&password="+this.pass;
         try {
-            this.connection = DriverManager.getConnection(this.url);
-            Statement st = this.connection.createStatement();
+            if (this.connection == null){
+                this.connection = DriverManager.getConnection(this.url);
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
-
     }
+
     public void desconectarDB(){
         try {
-            this.connection.close();
+            if(this.connection!=null){
+                this.connection.close();
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
