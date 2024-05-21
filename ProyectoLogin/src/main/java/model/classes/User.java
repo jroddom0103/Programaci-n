@@ -5,15 +5,16 @@ import java.util.Objects;
 public class User {
 
     private String id;
-    private String user;
+    private String correo;
     private String pass;
     private boolean isAdmin;
 
 
-    public User(String id, String user, String pass){
+    public User(String id, String correo, String pass, boolean isAdmin){
         this.id = id;
-        this.user = user;
+        this.correo = correo;
         this.pass = pass;
+        this.isAdmin = isAdmin;
     }
 
     public String getId() {
@@ -24,9 +25,9 @@ public class User {
         this.id = id;
     }
 
-    public String getUser(){return user;}
+    public String getCorreo(){return correo;}
 
-    public void setUser(String user){this.user = user;}
+    public void setUser(String correo){this.correo = correo;}
 
     public String getPass() {
         return pass;
@@ -36,9 +37,17 @@ public class User {
         this.pass = pass;
     }
 
+    public boolean getisAdmin(){
+        return isAdmin;
+    }
+
+    public void setisAdmin(boolean isAdmin){
+        this.isAdmin = isAdmin;
+    }
+
     @Override
     public String toString() {
-        return "El user se llama "+this.user+" con id: "+this.id;
+        return "El user tiene el correo "+this.correo+" con id: "+this.id;
     }
 
     @Override
@@ -51,7 +60,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, pass);
+        return Objects.hash(id, correo, pass, isAdmin);
     }
 
 }

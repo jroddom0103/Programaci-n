@@ -1,9 +1,7 @@
 package ui.panels;
 
-import model.classes.User;
 import services.UserService;
 import ui.frames.FrameLogin;
-
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -12,7 +10,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class PanelLogin extends JPanel {
-    private JTextField user;
+    private JTextField id;
+    private JTextField correo;
     private JTextField pass;
     private  JLabel labelError;
     private JButton bEnviar;
@@ -54,7 +53,7 @@ public class PanelLogin extends JPanel {
         public void mouseClicked(MouseEvent e) {
 
             // Comprueba si el usuario ha introducido correctamente sus credenciales
-            if (serviceUser.checkUserExists(new User(user.getText(),pass.getText(),user.getText()))){
+            if (serviceUser.checkUserExists(correo.getText(),pass.getText())){
                 // Si se han introducido correctamente, se procede a cargar el panelOpciones
                 cargarPanelMainMenu();
             } else {
@@ -72,29 +71,28 @@ public class PanelLogin extends JPanel {
         this.setBackground(new Color(0xDFDCDC));
         this.setLayout(null);
 
-        JLabel usuario = new JLabel("Usuario: ");
-        usuario.setLocation(new Point(200, 135));
-        usuario.setSize(new Dimension(152, 32));
-        // usuario.setFont(new Font("Consolas", Font.BOLD, 22));
-        this.add(usuario);
+        JLabel correoLabel = new JLabel("Correo: ");
+        correoLabel.setLocation(new Point(160, 200));
+        correoLabel.setSize(new Dimension(152, 32));
+        this.add(correoLabel);
 
-        user = new JTextField("Introduzca su usuario");
-        user.setLocation(new Point(260, 135));
-        user.setSize(new Dimension(152, 32));
-        this.add(user);
+        correo = new JTextField("");
+        correo.setLocation(new Point(220, 200));
+        correo.setSize(new Dimension(152, 32));
+        this.add(correo);
 
-        JLabel passwd = new JLabel("Passwd: ");
-        passwd.setLocation(new Point(200, 200));
-        passwd.setSize(new Dimension(152, 32));
-        this.add(passwd);
+        JLabel passwdLabel = new JLabel("Passwd: ");
+        passwdLabel.setLocation(new Point(160, 250));
+        passwdLabel.setSize(new Dimension(152, 32));
+        this.add(passwdLabel);
 
         pass = new JPasswordField();
-        pass.setLocation(new Point(260, 200));
+        pass.setLocation(new Point(220, 250));
         pass.setSize(new Dimension(152, 32));
         this.add(pass);
 
         bEnviar = new JButton("Enviar");
-        bEnviar.setLocation(new Point(120, 321));
+        bEnviar.setLocation(new Point(190, 350));
         bEnviar.setSize(new Dimension(152, 32));
         bEnviar.setBackground(new Color(208, 223, 232)); // Fondo azul medio
         bEnviar.setBorder(new LineBorder(new Color(0,0,0), 2));
@@ -102,16 +100,26 @@ public class PanelLogin extends JPanel {
         bEnviar.addMouseListener(listenerMouseCambiarAspecto);
         this.add(bEnviar);
 
-        labelError = new JLabel("Usuario o contraseña incorrectos");
+        labelError = new JLabel("Correo o contrasena incorrecta");
         labelError.setFont(new Font("Consolas", Font.ITALIC, 10));
         labelError.setForeground(new Color(255,0,0));
-        labelError.setBounds(230, 250, 200,32);
+        labelError.setBounds(180, 300, 250,32);
         labelError.setVisible(false);
         this.add(labelError);
 
     }
 
     public void cargarPanelMainMenu(){
+        // ELIMINAMOS THIS PanelLogin
+        framePadre.remove(this);
+
+        // Añadimos el panel Opciones
+        PanelOpciones panelOpciones = new PanelOpciones(framePadre);
+        framePadre.add(panelOpciones);
+
+        // ULTIMO: REPINTAR EL FRAME
+        framePadre.repaint();
+        framePadre.revalidate();
     }
 }
 
