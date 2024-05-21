@@ -54,10 +54,10 @@ public class UserService {
 
     public boolean altaUsuario(User usuario){
 
-        if (usuario.getCorreo().length()<=20){
+        if (usuario.getId().length()<=20){
             try {
-                if (userExists(usuario.getId())){
-                    this.logger.registrarLog(usuario.getId(), "LOGIN", "OK");
+                if (!userExists(usuario.getId())){
+                    this.logger.registrarLog(usuario.getId(), "Alta", "OK");
                     anadirFicheroUsers(usuario);
                     return true;
                 }

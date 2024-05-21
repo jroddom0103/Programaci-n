@@ -100,7 +100,7 @@ public class PanelLogin extends JPanel {
         bEnviar.addMouseListener(listenerMouseCambiarAspecto);
         this.add(bEnviar);
 
-        labelError = new JLabel("Correo o contrasena incorrecta");
+        labelError = new JLabel("Correo o contrasena equivocada");
         labelError.setFont(new Font("Consolas", Font.ITALIC, 10));
         labelError.setForeground(new Color(255,0,0));
         labelError.setBounds(180, 300, 250,32);
