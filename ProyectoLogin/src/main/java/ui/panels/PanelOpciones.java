@@ -84,7 +84,7 @@ public class PanelOpciones extends JPanel {
         framePadre.remove(this);
 
         // AÑADIMOS UN PANEL ALTA AL ¡¡¡FRAME!!!
-        PanelAlta panelAlta = new PanelAlta();
+        PanelAlta panelAlta = new PanelAlta(framePadre);
         framePadre.add(panelAlta);
 
         // ULTIMO: REPINTAR EL FRAME

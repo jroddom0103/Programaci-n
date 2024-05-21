@@ -3,6 +3,7 @@ package ui.panels;
 
 import model.classes.User;
 import services.UserService;
+import ui.frames.FrameLogin;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -18,6 +19,8 @@ public class PanelAlta extends JPanel implements ItemListener {
     boolean esAdmin;
     private JComboBox<String> comboAdmin;
     JButton b;
+    // Este es el FramePadre de este panel
+    private FrameLogin framePadre;
     UserService serviceUser = new UserService();
     JTextField mensaje = new JTextField("Las contrasenas no coinciden.");
 
@@ -42,6 +45,7 @@ public class PanelAlta extends JPanel implements ItemListener {
                 if (serviceUser.altaUsuario(usuarioRegistrado)){
                     System.out.println("Te has registrado correctamente.");
                     mensaje.setVisible(true);
+                    cargarPanelMainMenu();
                 }
             }else{
                 System.out.println("Las contraseñas no coinciden.");
@@ -67,7 +71,9 @@ public class PanelAlta extends JPanel implements ItemListener {
         }
     };
 
-    public PanelAlta(){
+    public PanelAlta(FrameLogin framePadre){
+
+        this.framePadre = framePadre;
         this.setBackground(new Color(174, 139, 225));
         this.setLayout(null);
 
@@ -129,6 +135,19 @@ public class PanelAlta extends JPanel implements ItemListener {
         this.add(b);
         b.addMouseListener(listenerMouse);
 
+    }
+
+    public void cargarPanelMainMenu(){
+        // ELIMINAMOS THIS PanelLogin
+        framePadre.remove(this);
+
+        // Añadimos el panel Opciones
+        PanelOpciones panelOpciones = new PanelOpciones(framePadre);
+        framePadre.add(panelOpciones);
+
+        // ULTIMO: REPINTAR EL FRAME
+        framePadre.repaint();
+        framePadre.revalidate();
     }
 
 }
