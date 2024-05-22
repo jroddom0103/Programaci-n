@@ -1,6 +1,5 @@
 package ui.panels;
 
-
 import model.classes.User;
 import services.UserService;
 import ui.frames.FrameLogin;
