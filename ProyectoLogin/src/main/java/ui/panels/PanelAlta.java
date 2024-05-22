@@ -40,13 +40,13 @@ public class PanelAlta extends JPanel implements ItemListener {
         public void mouseClicked(MouseEvent e) {
 
             if (textFieldPass.getText().equals(textFieldPass2.getText())){
-
+/**
                 User usuarioRegistrado = new User(textFieldId.getText(),textFieldCorreo.getText(),textFieldPass.getText(),esAdmin);
                 if (serviceUser.altaUsuario(usuarioRegistrado)){
                     System.out.println("Te has registrado correctamente.");
                     mensaje.setVisible(true);
                     cargarPanelMainMenu();
-                }
+                }*/
             }else{
                 System.out.println("Las contraseñas no coinciden.");
                 mensaje.setBounds(200,350,50,50);

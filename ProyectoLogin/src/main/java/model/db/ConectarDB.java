@@ -44,4 +44,7 @@ public class ConectarDB {
 
     }
 
+    public Connection obtenerConexion(){
+        return this.connection;
+    }
 }

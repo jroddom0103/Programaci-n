@@ -1,19 +1,25 @@
 package ui.panels;
 
+import model.db.ConectarDB;
 import services.UserService;
 import ui.frames.FrameLogin;
+import utils.DBUtils;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class PanelLogin extends JPanel {
     private JTextField id;
-    private JTextField correo;
     private JTextField pass;
-    private  JLabel labelError;
+    private JLabel labelError;
     private JButton bEnviar;
     private JButton bAlta;
 
@@ -44,7 +50,7 @@ public class PanelLogin extends JPanel {
         @Override
         public void mouseReleased(MouseEvent e) {
             JButton b = (JButton) e.getSource();
-            b.setBorder(new LineBorder(new Color(0,0,0), 2));
+            b.setBorder(new LineBorder(new Color(0, 0, 0), 2));
         }
     };
 
@@ -52,13 +58,13 @@ public class PanelLogin extends JPanel {
         @Override
         public void mouseClicked(MouseEvent e) {
 
-            // Comprueba si el usuario ha introducido correctamente sus credenciales
-            if (serviceUser.checkUserExists(correo.getText(),pass.getText())){
-                // Si se han introducido correctamente, se procede a cargar el panelOpciones
-                cargarPanelMainMenu();
-            } else {
-                labelError.setVisible(true);
+            String idString = id.getText();
+            String passString = pass.getText();
 
+            if (serviceUser.checkLogin(idString,passString)==true){
+                cargarPanelMainMenu();
+            }else{
+                labelError.setVisible(true);
             }
         }
     };
@@ -76,10 +82,10 @@ public class PanelLogin extends JPanel {
         correoLabel.setSize(new Dimension(152, 32));
         this.add(correoLabel);
 
-        correo = new JTextField("");
-        correo.setLocation(new Point(220, 200));
-        correo.setSize(new Dimension(152, 32));
-        this.add(correo);
+        id = new JTextField("");
+        id.setLocation(new Point(220, 200));
+        id.setSize(new Dimension(152, 32));
+        this.add(id);
 
         JLabel passwdLabel = new JLabel("Passwd: ");
         passwdLabel.setLocation(new Point(160, 250));
@@ -95,21 +101,21 @@ public class PanelLogin extends JPanel {
         bEnviar.setLocation(new Point(190, 350));
         bEnviar.setSize(new Dimension(152, 32));
         bEnviar.setBackground(new Color(208, 223, 232)); // Fondo azul medio
-        bEnviar.setBorder(new LineBorder(new Color(0,0,0), 2));
+        bEnviar.setBorder(new LineBorder(new Color(0, 0, 0), 2));
         bEnviar.addMouseListener(listenerMouseEnviar);
         bEnviar.addMouseListener(listenerMouseCambiarAspecto);
         this.add(bEnviar);
 
         labelError = new JLabel("Correo o contrasena equivocada");
         labelError.setFont(new Font("Consolas", Font.ITALIC, 10));
-        labelError.setForeground(new Color(255,0,0));
-        labelError.setBounds(180, 300, 250,32);
+        labelError.setForeground(new Color(255, 0, 0));
+        labelError.setBounds(180, 300, 250, 32);
         labelError.setVisible(false);
         this.add(labelError);
 
     }
 
-    public void cargarPanelMainMenu(){
+    public void cargarPanelMainMenu() {
         // ELIMINAMOS THIS PanelLogin
         framePadre.remove(this);
 
