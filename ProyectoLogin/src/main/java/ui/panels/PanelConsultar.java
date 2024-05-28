@@ -15,16 +15,48 @@ public class PanelConsultar extends JPanel {
     // VINCULAMOS EL PANEL AL FRAME
     private FrameLogin framePadre;
     private JTextField user;
-    private JTextField nameUser;
-    private JTextField pass;
-    private JTextField pass2;
-    private JComboBox isAdmin;
     private JButton bAtras;
     private JButton bConsultar;
+    JTextArea areaInformacion;
     private UserService serviceUser = new UserService();
-    private UserService serviceLogger = new UserService();
-    private String ruta = "src/main/resources/users/users.txt";
 
+    private MouseListener listenerConsultar = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            String id = user.getText();
+
+            String infoUser = serviceUser.consultarUsuario(id);
+
+            if (infoUser != null) {
+                // Dividir la cadena y mostrar los datos en el área de texto
+                areaInformacion.setText(""); // Limpiar el área de texto
+                areaInformacion.append(id+"\n");
+                String[] datos = infoUser.split(":");
+                for (int i = 0;i<datos.length;i++) {
+                    String dato = datos[i];
+                    areaInformacion.append(dato.trim() + "\n");
+                }
+            } else {
+                JOptionPane.showMessageDialog(framePadre, "Usuario no encontrado.");
+                areaInformacion.setText("");
+            }
+        }
+    };
+
+    MouseListener listenerMouse = new MouseAdapter() {
+
+        public void mouseEntered(MouseEvent e) {
+            JButton b = (JButton) e.getSource();
+            b.setBackground(new Color(135, 206, 250)); // Fondo azul claro
+            b.setBorder(new LineBorder(new Color(0, 115, 183), 3)); // Borde azul oscuro
+        }
+
+        public void mouseExited(MouseEvent e) {
+            JButton b = (JButton) e.getSource();
+            b.setBackground(new Color(102, 153, 204)); // Fondo azul medio
+            b.setBorder(new LineBorder(new Color(135, 206, 250), 3)); // Borde azul claro
+        }
+    };
     private MouseListener listenerMouseOpciones = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -40,33 +72,35 @@ public class PanelConsultar extends JPanel {
         this.setLayout(null);
 
         JLabel eti = new JLabel("Panel CONSULTAR");
-        eti.setBounds(275, 80, 172, 55);
+        eti.setBounds(240, 80, 172, 55);
         this.add(eti);
 
         JLabel usuario = new JLabel("Id:");
-        usuario.setBounds(220, 150, 172, 55);
+        usuario.setBounds(190, 170, 172, 55);
         this.add(usuario);
 
         user = new JTextField();
-        user.setBounds(250, 168, 172, 20);
+        user.setBounds(210, 188, 172, 20);
         this.add(user);
 
-
-        JTextArea areaInformacion = new JTextArea("");
-        areaInformacion.setBounds(220,300,100,100);
+        areaInformacion = new JTextArea("");
+        areaInformacion.setBounds(200,300,200,100);
         this.add(areaInformacion);
 
         bAtras = new JButton("Atras");
         bAtras.setBounds(40, 500, 100, 50);
         bAtras.setBackground(new Color(208, 223, 232));
         bAtras.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        bAtras.addMouseListener(listenerMouse);
         bAtras.addMouseListener(listenerMouseOpciones);
         this.add(bAtras);
 
         bConsultar = new JButton("Consultar");
-        bConsultar.setBounds(280, 200, 100, 50);
+        bConsultar.setBounds(240, 225, 100, 50);
         bConsultar.setBackground(new Color(208, 223, 232));
         bConsultar.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        bConsultar.addMouseListener(listenerMouse);
+        bConsultar.addMouseListener(listenerConsultar);
         this.add(bConsultar);
     }
 

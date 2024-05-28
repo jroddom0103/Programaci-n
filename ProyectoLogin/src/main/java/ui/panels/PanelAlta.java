@@ -1,6 +1,7 @@
 package ui.panels;
 
 import model.classes.User;
+import services.ServiceLogger;
 import services.UserService;
 import ui.frames.FrameLogin;
 
@@ -18,6 +19,9 @@ public class PanelAlta extends JPanel implements ItemListener {
     boolean esAdmin;
     private JComboBox<String> comboAdmin;
     JButton b;
+    JButton bAtras;
+    private ServiceLogger serviceLogger = new ServiceLogger();
+
     // Este es el FramePadre de este panel
     private FrameLogin framePadre;
     UserService serviceUser = new UserService();
@@ -34,39 +38,60 @@ public class PanelAlta extends JPanel implements ItemListener {
             }
         }
     }
-    MouseListener listenerMouse = new MouseAdapter() {
+
+    MouseListener listenerAlta = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
-
-            if (textFieldPass.getText().equals(textFieldPass2.getText())){
-/**
-                User usuarioRegistrado = new User(textFieldId.getText(),textFieldCorreo.getText(),textFieldPass.getText(),esAdmin);
-                if (serviceUser.altaUsuario(usuarioRegistrado)){
-                    System.out.println("Te has registrado correctamente.");
-                    mensaje.setVisible(true);
-                    cargarPanelMainMenu();
-                }*/
-            }else{
-                System.out.println("Las contraseñas no coinciden.");
-                mensaje.setBounds(200,350,50,50);
-                mensaje.setFont(new Font("Arial",Font.ITALIC,10));
-                mensaje.setVisible(true);
+            if (serviceUser.agregarUser(textFieldId.getText(),textFieldCorreo.getText(),textFieldPass.getText(), textFieldPass2.getText(),comboAdmin.getSelectedItem().toString())){
+                JOptionPane.showMessageDialog(framePadre, "Usuario introducido.");
+                serviceLogger.registrarLog(textFieldId.getText(),"ALTA","Correcta");
+            }else if (textFieldId.getText().length()>20 || textFieldCorreo.getText().length()>20 || textFieldPass.getText().length()>20){
+                JOptionPane.showMessageDialog(framePadre, "No se puden poner mas de 20 caracteres en los campos.");
+                serviceLogger.registrarLog(textFieldId.getText(),"ALTA","Incorrecta");
+            }else if (!textFieldCorreo.getText().matches("[a-zA-Z0-9._%+-]+@gmail\\.(es|com)")){
+                JOptionPane.showMessageDialog(framePadre, "El formato del correo no es correcto");
+                serviceLogger.registrarLog(textFieldId.getText(),"ALTA","Incorrecta");
+            }else if (textFieldCorreo.equals("") || textFieldPass.equals("")){
+                JOptionPane.showMessageDialog(framePadre, "Todos los campos deben estar rellenados.");
+                serviceLogger.registrarLog(textFieldId.getText(),"ALTA","Incorrecta");
+            }else if (!textFieldPass.equals(textFieldPass2)){
+                JOptionPane.showMessageDialog(framePadre, "Las contrasenas no coinciden.");
+                serviceLogger.registrarLog(textFieldId.getText(),"ALTA","Incorrecta");
+            }else {
+                JOptionPane.showMessageDialog(framePadre, "Ya hay un usuario con esa id.");
+                serviceLogger.registrarLog(textFieldId.getText(),"ALTA","Incorrecta");
             }
-
         }
+    };
+    MouseListener listenerMouse = new MouseAdapter() {
 
         @Override
         public void mouseEntered(MouseEvent e) {
-            JButton b = (JButton) e.getSource();
+            bAtras = (JButton) e.getSource();
+            bAtras.setBackground(new Color(135, 206, 250)); // Fondo azul claro
+            bAtras.setBorder(new LineBorder(new Color(0, 115, 183), 3)); // Borde azul oscuro
+
+            b = (JButton) e.getSource();
             b.setBackground(new Color(135, 206, 250)); // Fondo azul claro
             b.setBorder(new LineBorder(new Color(0, 115, 183), 3)); // Borde azul oscuro
         }
 
         @Override
         public void mouseExited(MouseEvent e) {
-            JButton b = (JButton) e.getSource();
+            bAtras = (JButton) e.getSource();
+            bAtras.setBackground(new Color(102, 153, 204)); // Fondo azul medio
+            bAtras.setBorder(new LineBorder(new Color(135, 206, 250), 3)); // Borde azul claro
+
+            b = (JButton) e.getSource();
             b.setBackground(new Color(102, 153, 204)); // Fondo azul medio
             b.setBorder(new LineBorder(new Color(135, 206, 250), 3)); // Borde azul claro
+        }
+    };
+
+    private MouseListener listenerMouseOpciones = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            cargarPanelOpciones();
         }
     };
 
@@ -131,16 +156,24 @@ public class PanelAlta extends JPanel implements ItemListener {
         b = new JButton("Enviar");
         b.setLocation(new Point(220,400));
         b.setSize(new Dimension(152,32));
-        this.add(b);
         b.addMouseListener(listenerMouse);
+        b.addMouseListener(listenerAlta);
+        this.add(b);
 
+        bAtras = new JButton("Atras");
+        bAtras.setBounds(40, 500, 100, 50);
+        bAtras.setBackground(new Color(208, 223, 232));
+        bAtras.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+        bAtras.addMouseListener(listenerMouse);
+        bAtras.addMouseListener(listenerMouseOpciones);
+        this.add(bAtras);
     }
 
-    public void cargarPanelMainMenu(){
+    private void cargarPanelOpciones() {
         // ELIMINAMOS THIS PanelLogin
         framePadre.remove(this);
 
-        // Añadimos el panel Opciones
+        // AÑADIMOS UN PANEL ALTA AL ¡¡¡FRAME!!!
         PanelOpciones panelOpciones = new PanelOpciones(framePadre);
         framePadre.add(panelOpciones);
 

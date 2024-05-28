@@ -1,6 +1,7 @@
 package ui.panels;
 
 import model.db.ConectarDB;
+import services.ServiceLogger;
 import services.UserService;
 import ui.frames.FrameLogin;
 import utils.DBUtils;
@@ -19,14 +20,13 @@ import java.sql.SQLException;
 public class PanelLogin extends JPanel {
     private JTextField id;
     private JTextField pass;
-    private JLabel labelError;
     private JButton bEnviar;
-    private JButton bAlta;
 
     // Este es el FramePadre de este panel
     private FrameLogin framePadre;
 
     private UserService serviceUser = new UserService();
+    private ServiceLogger serviceLogger = new ServiceLogger();
 
     private MouseListener listenerMouseCambiarAspecto = new MouseAdapter() {
         @Override
@@ -62,9 +62,11 @@ public class PanelLogin extends JPanel {
             String passString = pass.getText();
 
             if (serviceUser.checkLogin(idString,passString)==true){
+                serviceLogger.registrarLog(idString,"LOGIN","Correcta");
                 cargarPanelMainMenu();
             }else{
-                labelError.setVisible(true);
+                serviceLogger.registrarLog(idString,"LOGIN","Incorrecta");
+                JOptionPane.showMessageDialog(framePadre, "Correo o pass equivocado.");
             }
         }
     };
@@ -77,7 +79,7 @@ public class PanelLogin extends JPanel {
         this.setBackground(new Color(0xDFDCDC));
         this.setLayout(null);
 
-        JLabel correoLabel = new JLabel("Correo: ");
+        JLabel correoLabel = new JLabel("Id: ");
         correoLabel.setLocation(new Point(160, 200));
         correoLabel.setSize(new Dimension(152, 32));
         this.add(correoLabel);
@@ -105,13 +107,6 @@ public class PanelLogin extends JPanel {
         bEnviar.addMouseListener(listenerMouseEnviar);
         bEnviar.addMouseListener(listenerMouseCambiarAspecto);
         this.add(bEnviar);
-
-        labelError = new JLabel("Correo o contrasena equivocada");
-        labelError.setFont(new Font("Consolas", Font.ITALIC, 10));
-        labelError.setForeground(new Color(255, 0, 0));
-        labelError.setBounds(180, 300, 250, 32);
-        labelError.setVisible(false);
-        this.add(labelError);
 
     }
 
